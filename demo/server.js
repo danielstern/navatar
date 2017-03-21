@@ -3,8 +3,6 @@ const Chance = require('chance');
 const {generateTree, generateRandomTreeParameters, generateGlyph } = require('./tree');
 const tinycolor = require("tinycolor2");
 const math = require('mathjs');
-const svg2png = require("svg2png");
-
 
 const formulateColorMenu = ()=>{
     const colorMenu = tinycolor("blue")
@@ -22,22 +20,24 @@ const formulateColorMenu = ()=>{
     return colorMenu;
 }
 
-const getNavatarMiddleware = ({encoding = 'svg'} = {})=>{
+const getNavatarMiddleware = ()=>{
     return (req,res)=>{
-        console.log("navatar...",encoding);
 
         const seed = (req.params.key || Object.values(req.params)[0]);
         const chance = new Chance(seed);
-        const height = 100;
-        const width = 100;
+        const height = req.query.height || 100;
+        const width = req.query.width || 100;
         const colorMenu = formulateColorMenu();
         const colors = chance.pick(colorMenu,6);
-        const tree = generateTree(generateRandomTreeParameters(seed));
-        const nodes = generateGlyph(seed);
+        const params = generateRandomTreeParameters(seed);
+        params.width = width;
+        params.height = height;
+        const tree = generateTree(params);
+        const nodes = generateGlyph(params);
         const svg = `
-<svg width=${width} height="${height}">
-    <rect width="100" height="100" x="0" y="0" fill="${colors[0]}"></rect>
-     <rect width=${100 / math.phi} height=${100 / math.phi} x=${(100 - 100 / math.phi) / 2} y=${(100 - 100 / math.phi) / 2} fill="white"></rect>
+<svg width=${width} height="${height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="400" height="180">
+    <rect width="${width}" height="${height}" x="0" y="0" fill="${colors[0]}"></rect>
+     <rect width=${width / math.phi} height=${height / math.phi} x=${(width - width / math.phi) / 2} y=${(height - height / math.phi) / 2} fill="white"></rect>
     ${tree.map((element)=>(`
         <line x1=${element.prevX} y1=${element.prevY} x2=${element.x} y2=${element.y} stroke-width=${0.1 * element.distance} stroke="${colors[2]}"></line>
     `))}
@@ -46,25 +46,10 @@ const getNavatarMiddleware = ({encoding = 'svg'} = {})=>{
     `))}
 </svg>
 `;
-        if (encoding === 'png') {
-            console.log("Sending png data...");
-            const png = svg2png(svg)
-                .then(buffer=>{
-                    res
-                        // .header(`AddType`,`image/png`)
-                        .contentType('image/png')
-                        .status(200)
-                        .send(buffer);
-                })
 
-        } else {
-            res
-                .status(200)
-                .send(svg)
-        }
-
-
-
+        res
+            .status(200)
+            .send(svg)
     };
 }
 
@@ -72,8 +57,7 @@ const getNavatarMiddleware = ({encoding = 'svg'} = {})=>{
 const express = require(`express`);
 const app = new express();
 
-app.use('/avatar/:key.svg',getNavatarMiddleware({encoding:'svg'}));
-app.use('/avatar/:key.png',getNavatarMiddleware({encoding:'png'}));
+app.use('/avatar/:key.svg',getNavatarMiddleware());
 app.use('/',express.static('demo/public'));
 
 const port = 7777;
