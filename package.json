@@ -1,0 +1,23 @@
+{
+  "name": "navatar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.0.6",
+    "d3": "^4.7.3",
+    "math": "0.0.3",
+    "mathjs": "^3.10.0",
+    "tinycolor": "0.0.1",
+    "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "express": "^4.15.2"
+  }
+}
