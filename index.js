@@ -1,7 +1,11 @@
+// const {
+//     getNavatarMiddleware
+// } = require('./src/getNavatarMiddleware');
+
 const {
-    getNavatarMiddleware
-} = require('./src/getNavatarMiddleware');
+    get2DMiddleWare
+} = require('./src/get2DMiddleWare');
 
 module.exports = {
-    getNavatarMiddleware
+    getNavatarMiddleware:get2DMiddleWare
 };

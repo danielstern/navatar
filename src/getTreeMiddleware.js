@@ -20,8 +20,7 @@ const formulateColorMenu = ()=>{
     return colorMenu;
 }
 
-
-const getNavatarMiddleware = ()=>{
+const getTreeMIddleware = ()=>{
     const cache = {};
     return (req,res)=>{
 
@@ -58,6 +57,11 @@ const getNavatarMiddleware = ()=>{
             .status(200)
             .send(svg)
     };
+}
+
+
+const getNavatarMiddleware = ()=>{
+    return getTreeMIddleware();
 }
 
 module.exports = {
