@@ -15,10 +15,12 @@
 
 ### How it works
 Navatar uses built-in algorithms to create cellular automata, a la Stephen Wolfram's ["A New Kind of Science"](http://www.wolframscience.com/nksonline/toc.html), which heavily influenced this project.
-When the MiddleWare is invoked, an SVG is randomly generated based on the key provided, and sent to the user. What you end up with is this:
+When the MiddleWare is invoked, an SVG is randomly generated based on the key provided, and sent to the user.
+<!--
+What you end up with is this:
 <object data="https://navatar-demo.herokuapp.com/avatar/larry.svg"></object>
 <object data="https://navatar-demo.herokuapp.com/avatar/curly.svg"></object>
-<object data="https://navatar-demo.herokuapp.com/avatar/moe.svg"></object>
+<object data="https://navatar-demo.herokuapp.com/avatar/moe.svg"></object>-->
 
 ### Usage
 - First, install via NPM
