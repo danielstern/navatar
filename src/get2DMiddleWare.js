@@ -42,9 +42,11 @@ const Data = (cells)=>({
     }
 });
 
-const get2DMiddleWare = ({steps=12, width = 100, height = 100} = {})=>{
+const get2DMiddleWare = ({steps=12} = {})=>{
     const cache = {};
     return (req,res)=>{
+        const width = req.query.width || 100;
+        const height = req.query.height || 100;
         const seed = req.params.key;
         if (cache[seed]) {
             return res.send(cache[seed]);
