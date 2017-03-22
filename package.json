@@ -3,8 +3,8 @@
   "version": "1.0.2",
   "description": "",
   "main": "index.js",
-  "engines":{
-    "node":"7.2.0"
+  "engines": {
+    "node": "7.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "chance": "^1.0.6",
+    "d3": "^4.7.3",
     "mathjs": "^3.10.0",
     "tinycolor2": "^1.4.1"
   },
