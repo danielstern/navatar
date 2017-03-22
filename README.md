@@ -1,6 +1,9 @@
 #Navatar, the Node.js Avatar Generator
 ## Generate visually-pleasing, unique avatars using Node.js
-[cool image][cool image][cool image] 
+ <object data="https://navatar-demo.herokuapp.com/avatar/try-it!.svg">
+ 
+ </object>
+ 
 ### Key Features
 - Easily add randomly generated avatars to your existing Express application using the built-in middleware
 - Generate fast SVG images that look good at any size
