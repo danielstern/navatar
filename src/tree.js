@@ -21,13 +21,10 @@ const generateRandomTreeParameters = (seed)=>{
     }
 };
 
-const generateGlyph = ({seed,width,height})=>{
+const generateGlyph = ({seed,width = 100,height = 100})=>{
     const chance = new Chance(seed);
-    // const width = 100;
-    // const height = 100;
-
     const nodeCount = chance.integer({min:1,max:6});
-    const initialDistance = (nodeCount === 1) ? 0 : chance.integer({min:10,max:40});
+    const initialDistance = (nodeCount === 1) ? 0 : chance.floating({min:height * 0.1,max:height * 0.4});
     const nodes = [];
     const nodeAngle = 360 / nodeCount;
     const centerPoint = {
@@ -52,9 +49,7 @@ const generateGlyph = ({seed,width,height})=>{
 
 };
 
-const generateTree = ({steps,angleChange,branches,variants, spiralness,width,height})=>{
-    // const width = 100;
-    // const height = 100;
+const generateTree = ({steps,angleChange,branches,variants, spiralness,width = 100,height = 100})=>{
     const initialDistance = height / math.phi / math.phi / steps * 4;
 
     let allBranches = [];
