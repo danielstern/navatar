@@ -6,7 +6,7 @@ const app = new express();
 app.use('/avatar/:key.svg',getNavatarMiddleware());
 app.use('/',express.static('demo/public'));
 
-const port = 7777;
+const port = process.env.PORT || 7777;
 app.listen(port,()=>{
     console.info(`Navatar demo is listening on Port ${port}.`);
 });
